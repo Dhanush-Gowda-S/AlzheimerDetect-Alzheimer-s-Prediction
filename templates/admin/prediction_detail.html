@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Prediction Detail</h2>
+
+<p><strong>UserID:</strong> {{ pred.user_id }}</p>
+<p><strong>Prediction:</strong> {{ pred.prediction }}</p>
+<p><strong>Confidence:</strong> {{ "%.2f"|format(pred.confidence*100) }}%</p>
+
+<h4>Image</h4>
+<img src="/uploads/{{ pred.image_path }}" class="img-fluid rounded border">
+
+<h4 class="mt-3">Grad-CAM</h4>
+<img src="/uploads/{{ pred.grad_cam_path }}" class="img-fluid rounded border">
+
+{% endblock %}

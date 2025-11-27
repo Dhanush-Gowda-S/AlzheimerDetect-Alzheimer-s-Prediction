@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Upload Image for Prediction</h2>
+
+<div class="card shadow mt-3">
+    <div class="card-body p-4">
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <label class="form-label">Select Image</label>
+            <input type="file" name="image" accept="image/*" class="form-control mb-3" required>
+
+            <label class="form-label">Select Model</label>
+            <select name="model_choice" class="form-select mb-4">
+                <option value="auto">Auto (detect from filename)</option>
+
+                {% for key, info in model_info.items() %}
+                <option value="{{ key }}">{{ info.name }}</option>
+                {% endfor %}
+            </select>
+
+            <button class="btn btn-primary w-100">Analyze</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

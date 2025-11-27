@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Analysis Result</h2>
+
+<div class="alert {% if prediction=='Healthy Control' %}alert-success{% else %}alert-warning{% endif %}">
+    <strong>Prediction:</strong> {{ prediction }}<br>
+    <strong>Confidence:</strong> {{ "%.2f" | format(confidence * 100) }}%
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <h5>Original Image</h5>
+        <img src="{{ original_image }}" class="img-fluid rounded shadow border">
+    </div>
+    <div class="col-md-6">
+        <h5>Grad-CAM</h5>
+        <img src="{{ grad_cam_image }}" class="img-fluid rounded shadow border">
+    </div>
+</div>
+
+<a href="{{ url_for('predict') }}" class="btn btn-primary mt-4">Analyze Another</a>
+
+{% endblock %}

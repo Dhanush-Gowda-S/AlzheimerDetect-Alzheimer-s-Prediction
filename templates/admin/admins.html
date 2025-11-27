@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Manage Admins</h2>
+
+<a href="{{ url_for('add_admin') }}" class="btn btn-primary btn-sm my-3">Add Admin</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Username</th><th>Role</th><th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for a in admins %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.username }}</td>
+            <td>{{ a.role }}</td>
+            <td>
+                <a href="{{ url_for('edit_admin', aid=a.id) }}" class="btn btn-sm btn-info">Edit</a>
+                <a href="{{ url_for('admin_change_password', aid=a.id) }}" class="btn btn-sm btn-secondary">Password</a>
+                <a href="{{ url_for('promote_admin', aid=a.id) }}" class="btn btn-sm btn-success">Promote</a>
+                <a href="{{ url_for('demote_admin', aid=a.id) }}" class="btn btn-sm btn-warning">Demote</a>
+                <a href="{{ url_for('delete_admin', aid=a.id) }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete admin?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Manage Users</h2>
+
+<a href="{{ url_for('admin_add_user') }}" class="btn btn-primary btn-sm my-3">Add User</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th><th>Username</th><th>Email</th><th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{ u.id }}</td>
+            <td>{{ u.username }}</td>
+            <td>{{ u.email }}</td>
+            <td>
+                <a href="{{ url_for('admin_edit_user', uid=u.id) }}" class="btn btn-sm btn-info">Edit</a>
+                <a href="{{ url_for('admin_delete_user', uid=u.id) }}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Delete user?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

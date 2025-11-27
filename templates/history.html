@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Prediction History</h2>
+
+{% if predictions %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Date</th><th>Prediction</th><th>Confidence</th><th>Image</th><th>Grad-CAM</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in predictions %}
+        <tr>
+            <td>{{ p.created_at }}</td>
+            <td>{{ p.prediction }}</td>
+            <td>{{ "%.2f"|format(p.confidence*100) }}%</td>
+            <td><a href="/uploads/{{ p.image_path }}" target="_blank">View</a></td>
+            <td><a href="/uploads/{{ p.grad_cam_path }}" target="_blank">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No history yet.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>All Predictions</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th><th>User ID</th><th>Model</th>
+            <th>Prediction</th><th>Confidence</th><th>Date</th><th>Details</th>
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for p in predictions %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.user_id }}</td>
+            <td>{{ p.model_used }}</td>
+            <td>{{ p.prediction }}</td>
+            <td>{{ "%.2f"|format(p.confidence * 100) }}%</td>
+            <td>{{ p.created_at }}</td>
+            <td>
+                <a href="{{ url_for('admin_pred_detail', pid=p.id) }}"
+                   class="btn btn-sm btn-info">View</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

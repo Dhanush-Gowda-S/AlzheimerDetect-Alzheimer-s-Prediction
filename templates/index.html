@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="p-5 mb-4 bg-primary text-white rounded-3">
+    <h1 class="display-5 fw-bold">AI-Powered Alzheimer's Detection</h1>
+    <p class="fs-5">Upload handwriting samples. Get instant predictions with Grad-CAM heatmaps.</p>
+
+    {% if not session.user_id %}
+    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg me-2">Get Started</a>
+    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Login</a>
+    {% else %}
+    <a href="{{ url_for('predict') }}" class="btn btn-light btn-lg">Make Prediction</a>
+    {% endif %}
+</div>
+
+{% endblock %}
