@@ -248,7 +248,7 @@ layer_name="Conv_1"
 
 # ❤️ Credits
 
-Developed by **You**  
+Developed by **Dhanush Gowda S**  
 Powered by **Flask, TensorFlow, MobileNetV2, Bootstrap, Grad-CAM**
 
 ---
